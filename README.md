@@ -24,7 +24,7 @@ Tech Stack
 1.Clone the repository**
 
 ```bash
-git clone https://github.com/your-username/react-weather-app.git
+git clone https://github.com/dcsarmistha/simple-weather-app.git
 cd react-weather-app
 
 2.Install dependencies
