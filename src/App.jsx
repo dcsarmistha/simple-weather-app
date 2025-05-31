@@ -27,11 +27,14 @@ function App() {
       }
 
       const data = await response.json();
-      setWeather({
-        temp: Math.round(data.main.temp),
-        humidity: data.main.humidity,
-        city: data.name,
-      });
+    setWeather({
+  temp: Math.round(data.main.temp),
+  humidity: data.main.humidity,
+  city: data.name,
+  condition: data.weather[0].main,
+  description: data.weather[0].description,
+  icon: data.weather[0].icon,
+});
     } catch (err) {
       setError(err.message);
     } finally {
@@ -43,7 +46,7 @@ function App() {
     <div className="app">
       <h1>☀️ React Weather App</h1>
 
-      <div className="search">
+      <div className="search-container">
         <input
           type="text"
           value={city}
@@ -57,13 +60,19 @@ function App() {
 
       {error && <p className="error">{error}</p>}
 
-      {weather && (
-        <div className="weather">
-          <h2>{weather.city}</h2>
-          <div className="temp">{weather.temp}°C</div>
-          <div>Humidity: {weather.humidity}%</div>
-        </div>
-      )}
+  {weather && (
+  <div className="weather">
+    <h2>{weather.city}</h2>
+    <div className="temp">{weather.temp}°C</div>
+    <div>Humidity: {weather.humidity}%</div>
+    <div>Condition: {weather.condition} ({weather.description})</div>
+    <img
+      src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`}
+      alt={weather.description}
+    />
+  </div>
+)}
+
     </div>
   );
 }
