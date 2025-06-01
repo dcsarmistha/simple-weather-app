@@ -1,45 +1,42 @@
 /* Base Styles */
 body {
   margin: 0;
+  padding: 20px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(135deg, #E8F5E9, #C8E6C9); /* Light green gradient */
-  transition: background 0.5s ease;
+  background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
 }
 
+/* App Container - Now more open */
 .app {
   text-align: center;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 2.5rem; /* Increased padding */
-  border-radius: 15px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
-  width: 90%;
-  max-width: 400px;
+  width: 100%;
+  max-width: 800px; /* Wider to accommodate forecast */
+  margin: 0 auto;
+  padding: 20px;
 }
 
 h1 {
-  color: #2E7D32; /* Dark green */
-  margin-bottom: 2rem; /* More space below title */
-  font-size: 1.8rem;
+  color: #2E7D32;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
 }
 
-/* Search Container (Better Spacing) */
+/* Search Container */
 .search-container {
   display: flex;
-  gap: 0.8rem; /* Space between input and button */
-  margin-bottom: 1.5rem; /* Space below search */
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
   justify-content: center;
   align-items: center;
+  max-width: 500px;
+  margin: 0 auto 1.5rem;
 }
 
 input {
-  padding: 0.8rem 1.2rem; /* Wider padding */
+  padding: 0.8rem 1.2rem;
   width: 70%;
-  border: 2px solid #A5D6A7; /* Light green border */
+  border: 2px solid #A5D6A7;
   border-radius: 25px;
   outline: none;
   font-size: 1rem;
@@ -48,14 +45,14 @@ input {
 }
 
 input:focus {
-  border-color: #4CAF50; /* Brighter green on focus */
+  border-color: #4CAF50;
 }
 
 button {
-  padding: 0.8rem 1.8rem; /* Wider button */
+  padding: 0.8rem 1.8rem;
   border: none;
   border-radius: 25px;
-  background: #4CAF50; /* Green */
+  background: #4CAF50;
   color: white;
   font-weight: bold;
   cursor: pointer;
@@ -64,75 +61,103 @@ button {
 }
 
 button:hover {
-  background: #388E3C; /* Darker green */
+  background: #388E3C;
   transform: translateY(-2px);
 }
 
-button:active {
-  transform: translateY(0);
-}
-
 /* Weather Display */
-.weather_class {
-  margin-top: 2rem;
+.weather {
+  margin: 2rem auto;
+  max-width: 500px;
   animation: fadeIn 0.8s ease;
 }
 
-.weather_class h2 {
+.weather h2 {
   font-size: 2rem;
   margin-bottom: 0.5rem;
-  color: #2E7D32; /* Dark green */
+  color: #2E7D32;
 }
 
-.weather_class p {
+.weather p {
   font-size: 1.2rem;
   margin: 0.5rem 0;
   color: #555;
 }
 
+/* Forecast Section - Now fully visible */
+.forecast {
+  margin: 3rem auto;
+  width: 100%;
+}
+
+.forecast h2 {
+  color: #2E7D32;
+  margin-bottom: 1.5rem;
+}
+
+.forecast-grid {
+  display: flex;
+  justify-content: space-around; /* Evenly distributes cards */
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.forecast-day {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  padding: 1rem;
+  min-width: 120px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.forecast-day p {
+  margin: 0.5rem 0;
+  color: #555;
+}
+
+.forecast-day img {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+}
+
 /* Error Message */
 .error {
-  color: #D32F2F; /* Red for errors */
+  color: #D32F2F;
   margin-top: 1rem;
   font-weight: bold;
 }
 
-/* Loading Animation */
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .forecast-grid {
+    gap: 0.8rem;
+  }
+  .forecast-day {
+    min-width: 110px;
+    padding: 0.8rem;
+  }
 }
 
-.loading {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  border: 3px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  border-top-color: white;
-  animation: spin 1s ease-in-out infinite;
+@media (max-width: 600px) {
+  .forecast-grid {
+    justify-content: center;
+  }
+  .forecast-day {
+    min-width: 100px;
+    font-size: 0.9rem;
+  }
 }
 
-/* Weather-Based Background Gradients (Green Variants) */
-.clear-sky {
-  background: linear-gradient(135deg, #A5D6A7, #81C784); /* Soft green */
-}
-
-.cloudy {
-  background: linear-gradient(135deg, #78909C, #B0BEC5); /* Muted teal */
-}
-
-.rainy {
-  background: linear-gradient(135deg, #4FC3F7, #0288D1); /* Blue-green */
-}
-
-.snowy {
-  background: linear-gradient(135deg, #B3E5FC, #E1F5FE); /* Ice blue */
-}
-
-.foggy {
-  background: linear-gradient(135deg, #CFD8DC, #B0BEC5); /* Gray-green */
-}
+/* Weather condition classes (unchanged) */
+.clear-sky { background: linear-gradient(135deg, #A5D6A7, #81C784); }
+.cloudy { background: linear-gradient(135deg, #78909C, #B0BEC5); }
+.rainy { background: linear-gradient(135deg, #4FC3F7, #0288D1); }
+.snowy { background: linear-gradient(135deg, #B3E5FC, #E1F5FE); }
+.foggy { background: linear-gradient(135deg, #CFD8DC, #B0BEC5); }
 
 /* Animations */
 @keyframes fadeIn {
